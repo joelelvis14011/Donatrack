@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DonaTrack</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>DonaTrack</h1>
+    <div id="cabeceraSesion" class="oculto">
+      <span id="sesionInfo"></span>
+      <button id="btnLogout" class="secundario">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECCIÓN: Autenticación -->
+    <section id="authSection">
+      <div class="tabs">
+        <button id="tabLogin" class="tab activo">Iniciar sesión</button>
+        <button id="tabRegistro" class="tab">Registrarse</button>
+      </div>
+
+      <form id="formLogin">
+        <h2>Iniciar sesión</h2>
+        <input type="email" id="loginEmail" placeholder="Correo" required>
+        <input type="password" id="loginPassword" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+        <p class="mensaje" id="loginMensaje"></p>
+      </form>
+
+      <form id="formRegistro" class="oculto">
+        <h2>Registro de donante</h2>
+        <input type="text" id="regNombre" placeholder="Nombre completo" required>
+        <input type="email" id="regEmail" placeholder="Correo" required>
+        <input type="password" id="regPassword" placeholder="Contraseña (mín. 8 caracteres)" required>
+        <select id="regRol">
+          <option value="donante">Donante</option>
+          <option value="administrador">Administrador</option>
+        </select>
+        <button type="submit">Registrarse</button>
+        <p class="mensaje" id="regMensaje"></p>
+      </form>
+    </section>
+
+    <!-- SECCIÓN: App (visible tras login) -->
+    <section id="appSection" class="oculto">
+
+      <div id="panelAdmin" class="oculto">
+        <h2>Crear campaña</h2>
+        <form id="formCampana">
+          <input type="text" id="campNombre" placeholder="Nombre de la campaña" required>
+          <input type="text" id="campDescripcion" placeholder="Descripción">
+          <input type="number" id="campMeta" placeholder="Meta ($)" required>
+          <input type="date" id="campFecha" required>
+          <button type="submit">Crear campaña</button>
+          <p class="mensaje" id="campMensaje"></p>
+        </form>
+      </div>
+
+      <h2>Campañas activas</h2>
+      <div id="listaCampanas"></div>
+
+      <div id="panelDonante" class="oculto">
+        <h2>Historial de mis donaciones</h2>
+        <div id="listaHistorial"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de donación -->
+  <div id="modalDonar" class="modal oculto">
+    <div class="modalContenido">
+      <h3 id="modalTitulo">Donar a campaña</h3>
+      <input type="number" id="montoDonar" placeholder="Monto a donar" min="1" required>
+      <button id="btnConfirmarDonar">Confirmar donación</button>
+      <button id="btnCerrarModal" class="secundario">Cancelar</button>
+      <p class="mensaje" id="donarMensaje"></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
