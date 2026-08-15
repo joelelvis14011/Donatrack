@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DonaTrack</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>DonaTrack</h1>
+    <h1>🤝 DonaTrack</h1>
     <div id="cabeceraSesion" class="oculto">
       <span id="sesionInfo"></span>
       <button id="btnLogout" class="secundario">Cerrar sesión</button>
@@ -26,7 +27,7 @@
         <h2>Iniciar sesión</h2>
         <input type="email" id="loginEmail" placeholder="Correo" required>
         <input type="password" id="loginPassword" placeholder="Contraseña" required>
-        <button type="submit">Entrar</button>
+        <button type="submit"><span class="btnTexto">Entrar</span></button>
         <p class="mensaje" id="loginMensaje"></p>
       </form>
 
@@ -34,12 +35,12 @@
         <h2>Registro de donante</h2>
         <input type="text" id="regNombre" placeholder="Nombre completo" required>
         <input type="email" id="regEmail" placeholder="Correo" required>
-        <input type="password" id="regPassword" placeholder="Contraseña (mín. 8 caracteres)" required>
+        <input type="password" id="regPassword" placeholder="Contraseña (mín. 8 caracteres)" minlength="8" required>
         <select id="regRol">
           <option value="donante">Donante</option>
           <option value="administrador">Administrador</option>
         </select>
-        <button type="submit">Registrarse</button>
+        <button type="submit"><span class="btnTexto">Registrarse</span></button>
         <p class="mensaje" id="regMensaje"></p>
       </form>
     </section>
@@ -47,20 +48,32 @@
     <!-- SECCIÓN: App (visible tras login) -->
     <section id="appSection" class="oculto">
 
-      <div id="panelAdmin" class="oculto">
-        <h2>Crear campaña</h2>
-        <form id="formCampana">
-          <input type="text" id="campNombre" placeholder="Nombre de la campaña" required>
-          <input type="text" id="campDescripcion" placeholder="Descripción">
-          <input type="number" id="campMeta" placeholder="Meta ($)" required>
-          <input type="date" id="campFecha" required>
-          <button type="submit">Crear campaña</button>
-          <p class="mensaje" id="campMensaje"></p>
-        </form>
+      <div id="subTabsAdmin" class="tabs oculto">
+        <button id="subTabCampanas" class="tab activo">Campañas</button>
+        <button id="subTabDonantes" class="tab">Donantes</button>
       </div>
 
-      <h2>Campañas activas</h2>
-      <div id="listaCampanas"></div>
+      <div id="vistaCampanas">
+        <div id="panelAdmin" class="oculto">
+          <h2>Crear campaña</h2>
+          <form id="formCampana">
+            <input type="text" id="campNombre" placeholder="Nombre de la campaña" required>
+            <input type="text" id="campDescripcion" placeholder="Descripción">
+            <input type="number" id="campMeta" placeholder="Meta ($)" min="1" required>
+            <input type="date" id="campFecha" required>
+            <button type="submit"><span class="btnTexto">Crear campaña</span></button>
+            <p class="mensaje" id="campMensaje"></p>
+          </form>
+        </div>
+
+        <h2>Campañas activas</h2>
+        <div id="listaCampanas"></div>
+      </div>
+
+      <div id="vistaDonantes" class="oculto">
+        <h2>Donantes registrados</h2>
+        <div id="listaDonantes"></div>
+      </div>
 
       <div id="panelDonante" class="oculto">
         <h2>Historial de mis donaciones</h2>
@@ -74,9 +87,18 @@
     <div class="modalContenido">
       <h3 id="modalTitulo">Donar a campaña</h3>
       <input type="number" id="montoDonar" placeholder="Monto a donar" min="1" required>
-      <button id="btnConfirmarDonar">Confirmar donación</button>
+      <button id="btnConfirmarDonar"><span class="btnTexto">Confirmar donación</span></button>
       <button id="btnCerrarModal" class="secundario">Cancelar</button>
       <p class="mensaje" id="donarMensaje"></p>
+    </div>
+  </div>
+
+  <!-- Modal de reporte -->
+  <div id="modalReporte" class="modal oculto">
+    <div class="modalContenido">
+      <h3>Reporte de campaña</h3>
+      <div id="contenidoReporte"></div>
+      <button id="btnCerrarReporte" class="secundario">Cerrar</button>
     </div>
   </div>
 

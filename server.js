@@ -6,6 +6,7 @@ require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
 const campanaRoutes = require('./routes/campanaRoutes');
 const donacionRoutes = require('./routes/donacionRoutes');
+const usuarioRoutes = require('./routes/usuarioRoutes');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.static('public'));
 app.use('/api/auth', authRoutes);
 app.use('/api/campanas', campanaRoutes);
 app.use('/api/donaciones', donacionRoutes);
+app.use('/api/usuarios', usuarioRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Conectado a MongoDB'))
